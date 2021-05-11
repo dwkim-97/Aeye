@@ -1,4 +1,4 @@
-const page2_URL = "file:///C:/Users/rhfem/Desktop/class/4-1/%EC%A2%85%ED%95%A9%EC%84%A4%EA%B3%84/code/src/page2.html?";
+const page2_URL = "./page2.html?";
 
 const inputVideo = document.getElementById('inputVideo'),
     video = document.getElementById('video'),
