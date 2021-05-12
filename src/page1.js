@@ -1,8 +1,12 @@
 const page2_URL = "./page2.html?";
 
 const inputVideo = document.getElementById('inputVideo'),
-    video = document.getElementById('video'),
+    video = document.querySelector('.video'),
     submitVideo = document.getElementById('submitVideo');
+
+function uploadVideo() {
+    window.localStorage.setItem("videoUrl", video.getAttribute("src"));
+}
 
 function submitVideoHandler(event) {
     event.preventDefault();
@@ -10,6 +14,7 @@ function submitVideoHandler(event) {
         alert("비디오를 선택해 주세요.");
     } else {
         // 비디오 업로드
+        uploadVideo();
         location.href = page2_URL;
         console.log("press upload");
     }
@@ -17,9 +22,9 @@ function submitVideoHandler(event) {
 
 function videoInputHandler() {
     const selectedVideo = inputVideo.files[0];
-    const videourl = URL.createObjectURL(selectedVideo);
-    video.setAttribute("src", videourl);
-    console.log(videourl);
+    const videoUrl = URL.createObjectURL(selectedVideo);
+    console.log(video);
+    video.setAttribute("src", videoUrl);
 }
 
 function init() {
