@@ -1,8 +1,8 @@
 const page2_URL = "./page2.html?";
 
-const inputVideo = document.getElementById('inputVideo'),
+const inputVideoBtn = document.getElementById('inputVideoBtn'),
     video = document.querySelector('.video'),
-    submitVideo = document.getElementById('submitVideo');
+    submitVideoBtn = document.getElementById('submitVideoBtn');
 
 function uploadVideo() {
     window.localStorage.setItem("videoUrl", video.getAttribute("src"));
@@ -21,15 +21,28 @@ function submitVideoHandler(event) {
 }
 
 function videoInputHandler() {
-    const selectedVideo = inputVideo.files[0];
+    const selectedVideo = inputVideoBtn.files[0];
     const videoUrl = URL.createObjectURL(selectedVideo);
     console.log(video);
     video.setAttribute("src", videoUrl);
 }
 
-function init() {
-    inputVideo.addEventListener("change", videoInputHandler);
-    submitVideo.addEventListener("click", submitVideoHandler);
+function videoClickHandler() {
+    console.log(video.dataset.isPlay);
+    if (video.dataset.isPlay === "playing") {
+        video.pause();
+        video.dataset.isPlay = "paused";
+    } else {
+        video.play();
+        video.dataset.isPlay = "playing";
+    }
 }
+
+function init() {
+    inputVideoBtn.addEventListener("change", videoInputHandler);
+    video.addEventListener("click", videoClickHandler);
+    submitVideoBtn.addEventListener("click", submitVideoHandler);
+}
+
 
 init();

@@ -39,10 +39,22 @@ function getGallery() {
     }
 }
 
+function videoClickHandler() {
+    console.log(video.dataset.isPlay);
+    if (video.dataset.isPlay === "playing") {
+        video.pause();
+        video.dataset.isPlay = "paused";
+    } else {
+        video.play();
+        video.dataset.isPlay = "playing";
+    }
+}
+
 function init() {
     getOriginalVideo();
     getGallery();
     goBackBtn.addEventListener('click', goBackHandler);
+    video.addEventListener('click', videoClickHandler);
 }
 
 init();
