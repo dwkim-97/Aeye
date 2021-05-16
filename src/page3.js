@@ -1,4 +1,4 @@
-const page2_URL = "./page2.html";
+const page4_URL = "./page4.html";
 
 const inputVideoBtn = document.getElementById('inputVideoBtn'),
     video = document.querySelector('.video'),
@@ -23,6 +23,7 @@ function submitVideoHandler(event) {
         // 비디오 업로드
         uploadVideo();
         // location.href = page4_URL;
+        location.href = page4_URL;
         console.log("press upload");
     }
 }
@@ -57,7 +58,14 @@ function videoClickHandler() {
     }
 }
 
+// 페이지2에서 체크한 이미지
+function getCheckedImg() {
+    const checkedImg = document.getElementById("checkedImg");
+    checkedImg.setAttribute("src", window.localStorage.getItem("checkSrc"));
+}
+
 function init() {
+    getCheckedImg();
     goBackBtn.addEventListener('click', goBackHandler);
     inputVideoBtn.addEventListener("change", videoInputHandler);
     submitVideoBtn.addEventListener("click", submitVideoHandler);
