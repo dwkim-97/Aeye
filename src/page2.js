@@ -1,11 +1,22 @@
+const page3_URL = "./page3.html?";
+
 const goBackBtn = document.getElementById("goBackBtn"),
+    goNextBtn = document.getElementById('goNextBtn'),
     videoBlock = document.getElementById('videoBlock'),
     video = document.querySelector('.video'),
     galleryBlock = document.getElementById('galleryBlock'),
     peopleGallery = document.getElementById('peopleGallery');
 
+
+
+// 이전으로
 function goBackHandler() {
     history.back();
+}
+
+// 다음으로
+function goNextHandler() {
+    location.href = page3_URL;
 }
 
 // 특정 시간으로 비디오 재생하기
@@ -13,6 +24,8 @@ function playVideoWithTime(event) {
     const time = event.target.innerText;
     video.currentTime = time;
     video.play();
+    video.dataset.isPlay = "playing";
+    console.log(video.dataset.isPlay);
 }
 
 // 비디오 페이지 넘어오게 하기 - 서버 연동시 변경
@@ -54,6 +67,7 @@ function init() {
     getOriginalVideo();
     getGallery();
     goBackBtn.addEventListener('click', goBackHandler);
+    goNextBtn.addEventListener('click', goNextHandler);
     video.addEventListener('click', videoClickHandler);
 }
 
