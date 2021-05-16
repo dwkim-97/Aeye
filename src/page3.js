@@ -27,7 +27,7 @@ function submitVideoHandler(event) {
     }
 }
 
-// 비디오는 우선 최대 9개
+// 비디오는 우선 최대 9개, 변경 필요
 function videoInputHandler() {
     for (let i = 0; i < 9; i++) {
         const selectedVideo = inputVideoBtn.files[i];

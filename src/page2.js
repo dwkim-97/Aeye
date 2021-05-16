@@ -34,6 +34,22 @@ function getOriginalVideo() {
     video.setAttribute('poster', "../test_data/video_poster.png");
 }
 
+
+// 사람 이미지 선택해서 체크
+function personObjectCheckHandler(event) {
+    console.log(event.target);
+    const clickedLi = event.target.parentNode;
+    clickedLi.setAttribute('checked', "true");
+    // 이전에 있던 체크드 지우기
+    if (window.localStorage.getItem("checkId")) {
+        const oldCheckId = window.localStorage.getItem("checkId");
+        const oldCheckedLi = document.getElementById(oldCheckId);
+        oldCheckedLi.setAttribute('checked', "false");
+    }
+    window.localStorage.setItem("checkId", clickedLi.id);
+    window.localStorage.setItem("checkSrc", event.target.src);
+}
+
 // 인물 갤러리 생성 - 서버 연동시 변경
 function getGallery() {
     for (let i = 0; i < 7; i++) {
@@ -41,11 +57,14 @@ function getGallery() {
         const TEMP_PERSON_OBJECT = document.createElement('img');
         const TEMP_TIME = document.createElement('p');
 
-        galleryBlock.appendChild(TEMP_LIST_ITEM);
+        peopleGallery.appendChild(TEMP_LIST_ITEM);
         TEMP_LIST_ITEM.appendChild(TEMP_PERSON_OBJECT);
         TEMP_LIST_ITEM.appendChild(TEMP_TIME);
+        TEMP_LIST_ITEM.setAttribute('id', i);
+        TEMP_LIST_ITEM.setAttribute('checked', "false");
 
         TEMP_PERSON_OBJECT.setAttribute('src', `../test_data/${i}.png`);
+        TEMP_PERSON_OBJECT.addEventListener('click', personObjectCheckHandler);
 
         TEMP_TIME.innerText = `0${i}`;
         TEMP_TIME.addEventListener('click', playVideoWithTime)
