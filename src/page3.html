@@ -3,27 +3,29 @@
 <meta charset="utf-8">
 
 <head>
-    <title>title</title>
+    <title>Aeye</title>
 </head>
 
 <body>
-    <button id="goBackBtn">이전으로</button>
-    <img id="checkedImg" src="" />
-    <form>
-        <input id="inputVideoBtn" type="file" accept="video/*" multiple>
-        <ul id="selectedVideos">
+    <div class="wrapper">
+        <button id="goBackBtn">이전으로</button>
+        <div id="checkedImgAndContainor">
+            <img id="checkedImg" src="" />
+            <form class="fileInputForm">
+                <input id="inputVideoBtn" type="file" accept="video/*" multiple>
+                <ul id="selectedVideos">
 
-        </ul>
-        <video data-is-play="paused" class="video"></video>
-        <input id="submitVideoBtn" type="submit" value="업로드">
-    </form>
-
-    <footer>
-        Copyright 2021. Team Matmanboja. all rights reserved.
-    </footer>
-
+                </ul>
+                <input id="submitVideoBtn" type="submit" value="업로드">
+            </form>
+        </div>
+        <footer>
+            Copyright 2021. Team Matmanboja. all rights reserved.
+        </footer>
+    </div>
 </body>
 
 <script src=page3.js></script>
+<link rel="stylesheet" href="./home.css" ;>
 
 </html>

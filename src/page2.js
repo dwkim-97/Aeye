@@ -40,11 +40,14 @@ function personObjectCheckHandler(event) {
     console.log(event.target);
     const clickedLi = event.target.parentNode;
     clickedLi.setAttribute('checked', "true");
+    clickedLi.style.border = "solid";
+    clickedLi.style.borderColor = "red";
     // 이전에 있던 체크드 지우기
     if (window.localStorage.getItem("checkId")) {
         const oldCheckId = window.localStorage.getItem("checkId");
         const oldCheckedLi = document.getElementById(oldCheckId);
         oldCheckedLi.setAttribute('checked', "false");
+        oldCheckedLi.style.border = "none";
     }
     window.localStorage.setItem("checkId", clickedLi.id);
     window.localStorage.setItem("checkSrc", event.target.src);

@@ -1,0 +1,145 @@
+html, body{
+    background-color:#dcdde1;
+    height: 100%;
+}
+
+.wrapper{
+    height:100%;
+    flex-direction:column;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+footer{
+    text-align:center;
+}
+
+#goBackBtn{
+    position: fixed;
+    top:20px;
+    left: 20px;
+}
+
+#goNextBtn{
+    position: fixed;
+    top:20px;
+    right: 20px;
+}
+
+ul, ol{
+    list-style:none;
+}
+
+/*------------------home---------------*/
+
+#logInBlock{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    margin: auto;
+}
+
+#logInForm{
+    background-color:#f5f6fa;
+    padding: 0 10px 20px;
+    border-radius: 10px;
+}
+
+#logInForm h1{
+    text-align:center;
+}
+
+/*------------------page1---------------*/
+
+.fileInputForm{
+    display:flex;
+    flex-direction: column;
+    background-color:#f5f6fa;
+    border-radius: 10px;
+    justify-content:center;
+    align-items:center;
+    padding: 30px 0;
+    margin:auto;
+}
+
+.fileInputForm video{
+    height:80%;
+    width:80%;
+    margin: auto;
+}
+
+/*------------------page2---------------*/
+
+#videoWithGallery{
+    display:flex;
+    background-color: #f5f6fa;
+    margin:auto;
+    border-radius: 10px;
+}
+
+#videoWithGallery #videoBlock{
+    width:60%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+#videoWithGallery video{
+    width: 95%;
+    margin: 0 20px;
+}
+
+#videoWithGallery #galleryBlock{
+    width: 40%;
+    text-align: center;
+    border-left: 5px dashed black;
+    overflow-x: auto;
+}
+
+#galleryBlock #peopleGallery{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#galleryBlock img{
+    margin: 10px;
+}
+
+/*------------------page3---------------*/
+
+#checkedImgAndContainor{
+    position: absolute;
+    background-color: white;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items: center;
+    width: 95%;
+    height: 80%;
+    border-radius: 10px;
+    margin:auto;
+}
+
+#checkedImgAndContainor .fileInputForm{
+    overflow-y: auto;
+    width: 100%;
+}
+
+#checkedImgAndContainor img{
+    margin:auto;
+}
+
+#checkedImgAndContainor #selectedVideos{
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items: center;
+}
+
+#selectedVideos video{
+    height: 200px;
+    width: 300px;
+    padding:0 10px;
+}

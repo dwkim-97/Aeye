@@ -21,9 +21,8 @@ function submitVideoHandler(event) {
         alert("비디오를 선택해 주세요.");
     } else {
         // 비디오 업로드
-        uploadVideo();
-        // location.href = page4_URL;
-        location.href = page4_URL;
+        // uploadVideo();
+        //location.href = page4_URL;
         console.log("press upload");
     }
 }
