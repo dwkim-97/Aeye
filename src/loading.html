@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+
+<head>
+    <title>Aeye</title>
+</head>
+
+<body style=>
+    <img id="loading" src="../test_data/loading.png">
+</body>
+
+<script src=loading.js></script>
+<link rel="stylesheet" href="./home.css">
+<style>
+    body {
+        text-align: center;
+    }
+
+    img {
+        width: 400px;
+        height: 400px;
+        margin: 100px auto;
+        animation: rotate_image 6s linear infinite;
+        transform-origin: 50% 50%;
+    }
+
+    @keyframes rotate_image {
+        100% {
+            transform: rotate(360deg);
+        }
+
+    }
+</style>
+
+</html>

@@ -1,4 +1,4 @@
-const page2_URL = "./page2.html?";
+const loading_URL = "./loading.html?";
 
 const inputVideoBtn = document.getElementById('inputVideoBtn'),
     video = document.querySelector('.video'),
@@ -15,7 +15,7 @@ function submitVideoHandler(event) {
     } else {
         // 비디오 업로드
         uploadVideo();
-        location.href = page2_URL;
+        location.href = loading_URL;
         console.log("press upload");
     }
 }
@@ -23,6 +23,7 @@ function submitVideoHandler(event) {
 function videoInputHandler() {
     const selectedVideo = inputVideoBtn.files[0];
     const videoUrl = URL.createObjectURL(selectedVideo);
+    video.style.height = "80%";
     console.log(video);
     video.setAttribute("src", videoUrl);
 }
