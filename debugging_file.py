@@ -166,7 +166,9 @@ if __name__=="__main__":
 
     #10/12 19:11 작동완료 확인
     #10/12 crop function 까지 만들어서 함수화
-    #10/12 완성
+    #10/12 19:30 완성
+
+
     yolo_on_video("1554.mp4")
 
 
@@ -177,83 +179,6 @@ if __name__=="__main__":
 
 
 
-
-
-
-
-
-
-
-
-
-    # cap = cv2.VideoCapture('1554.mp4')
-    # frame_number = 0
-    #
-    # while True:
-    #     success, img = cap.read()
-    #
-    #     #조절할려면 여기
-    #     #cap.set(cv2.CAP_PROP_POS_FRAMES, 200)
-    #
-    #
-    #     # input to network
-    #     blob = cv2.dnn.blobFromImage(img, 1 / 255, (whT, whT), [0, 0, 0], 1, crop=False)
-    #     net.setInput(blob)
-    #
-    #     layerNames = net.getLayerNames()
-    #     # extract only output layer
-    #
-    #     outputNames = [layerNames[i[0] - 1] for i in net.getUnconnectedOutLayers()]
-    #     # print(net.getUnconnectedOutLayers())
-    #     # print(outputNames)
-    #
-    #     outputs = net.forward(outputNames)
-    #     # print(outputs[0].shape)
-    #     # print(outputs[1].shape)
-    #     # print(outputs[2].shape)
-    #     # print(outputs[0][0])
-    #
-    #
-    #
-    #
-    #     #findobject(outputs, img)
-    #     box_coord,classIds = findobject(outputs,img)
-    #
-    #
-    #     #frame saving
-    #     print("for debugs")
-    #     #cv2.imshow("image", img)
-    #     #cv2.imwrite("frame_data/" + f"test{frame_number}.jpg", img)
-    #     #cv2.waitKey(1)
-    #
-    #
-    #     try:
-    #         person_number = 1
-    #         for bbox in box_coord:
-    #             x, y, w, h = bbox[0], bbox[1], bbox[2], bbox[3]
-    #             roi = img[y:y + h, x:x + w]
-    #             cv2.imwrite("persons/"+"frame_"+f"{frame_number}"+"_"+"person_"+f"{person_number}"+".jpg",roi)
-    #             #cv2.imwrite("persons/" +"frame_"+f"{person_number}" + "_" + f"{frame_number}.jpg", roi)
-    #             person_number += 1
-    #     except:
-    #         pass
-    #
-    #
-    #     ##############################################################
-    #     # 여기는 프레임률 조절 아직 방법 못찾아서 count돌다가 30개 이상이면 멈추게
-    #     #
-    #     #                                                            #
-    #     #                                                            #
-    #     #                                                            #
-    #     #                                                            #
-    #     #                                                            #
-    #     ##############################################################
-    #
-    #     #임시방편용
-    #     if frame_number == 30:
-    #         break
-    #
-    #     frame_number += 1
 
 
 

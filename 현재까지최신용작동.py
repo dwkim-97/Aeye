@@ -2,42 +2,40 @@ import os
 import cv2
 import numpy as np
 
-classFile='coco.names'
-classnames=[]
+classFile = 'coco.names'
+classnames = []
 
-whT=320
-confidenceThreshold =0.5
+whT = 320
+confidenceThreshold = 0.5
 nmsThreshold = 0.3
-#lower it is acc
+# lower it is acc
 
 
 modelconfig = 'yolov3.cfg'
 modelweights = 'yolov3.weights'
 
-#yolo model
-net = cv2.dnn.readNetFromDarknet(modelconfig,modelweights)
+# yolo model
+net = cv2.dnn.readNetFromDarknet(modelconfig, modelweights)
 net.setPreferableBackend(cv2.dnn.DNN_BACKEND_OPENCV)
 net.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
 
-
-with open(classFile,'rt') as f:
+with open(classFile, 'rt') as f:
     classnames = f.read().rstrip('\n').split('\n')
 print(classnames)
 print(len(classnames))
 
 
-
-def findobject(outputs,img):
-    hT,wT,cT = img.shape
+def findobject(outputs, img):
+    hT, wT, cT = img.shape
     bbox = []
-    classIds= []
-    confs=[]
+    classIds = []
+    confs = []
 
-    #outputs는 3개 (300,85) , (1200,85), (4---,85)
+    # outputs는 3개 (300,85) , (1200,85), (4---,85)
     for output in outputs:
         for det in output:
             # 5부터는 score
-            scores =det[5:]
+            scores = det[5:]
             classId = np.argmax(scores)
 
             ##############################################################
@@ -50,33 +48,33 @@ def findobject(outputs,img):
             #                                                            #
             ##############################################################
 
-            if classId!=0:
+            if classId != 0:
                 continue
 
             confidence = scores[classId]
 
-            if confidence>confidenceThreshold:
-                w,h = int(det[2]*wT) , int(det[3]*hT)
-                x,y =  int((det[0]*wT) - w/2) , int((det[1]*hT) - h/2)
-                bbox.append([x,y,w,h])
+            if confidence > confidenceThreshold:
+                w, h = int(det[2] * wT), int(det[3] * hT)
+                x, y = int((det[0] * wT) - w / 2), int((det[1] * hT) - h / 2)
+                bbox.append([x, y, w, h])
                 classIds.append(classId)
                 confs.append(float(confidence))
 
-    indicies = cv2.dnn.NMSBoxes(bbox,confs,confidenceThreshold,nmsThreshold)
+    indicies = cv2.dnn.NMSBoxes(bbox, confs, confidenceThreshold, nmsThreshold)
 
     for i in indicies:
         i = i[0]
         box = bbox[i]
-        x,y,w,h = box[0],box[1],box[2],box[3]
+        x, y, w, h = box[0], box[1], box[2], box[3]
 
-        cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,255),2)
+        cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 255), 2)
         roi = img[y:y + h, x:x + w]
-        #cv2.imwrite(f"{c}"+"roi.jpg", roi)
+        # cv2.imwrite(f"{c}"+"roi.jpg", roi)
 
-        #cv2.putText(img,f'{classnames[classIds[i]].upper()} {int(confs[i]*100)}%',
-        #(x,y-10),cv2.FONT_HERSHEY_SIMPLEX,0.6,(255,0,255),1)
+        # cv2.putText(img,f'{classnames[classIds[i]].upper()} {int(confs[i]*100)}%',
+        # (x,y-10),cv2.FONT_HERSHEY_SIMPLEX,0.6,(255,0,255),1)
 
-    return bbox , classIds
+    return bbox, classIds
 
 
 def yolo_on_video(video_path):
@@ -85,7 +83,6 @@ def yolo_on_video(video_path):
 
     while True:
         success, img = cap.read()
-        print("frame" + f"{frame_number}" + " handling")
 
         # 조절할려면 여기
         # cap.set(cv2.CAP_PROP_POS_FRAMES, 200)
@@ -117,18 +114,18 @@ def yolo_on_video(video_path):
         # cv2.waitKey(1)
         print("detecting is over")
 
-
-
-
-        print("croppin images ")
-        crop_person(img,box_coord,frame_number)
-        print("cropping over")
-
-        # 임시방편용
-        if frame_number == 5:
-            break
-
-        frame_number += 1
+        print("cropping")
+        try:
+            person_number = 1
+            for bbox in box_coord:
+                x, y, w, h = bbox[0], bbox[1], bbox[2], bbox[3]
+                roi = img[y:y + h, x:x + w]
+                cv2.imwrite("persons/" + "frame_" + f"{frame_number}" + "_" + "person_" + f"{person_number}" + ".jpg",
+                            roi)
+                # cv2.imwrite("persons/" +"frame_"+f"{person_number}" + "_" + f"{frame_number}.jpg", roi)
+                person_number += 1
+        except:
+            pass
 
         ##############################################################
         # 여기는 프레임률 조절 아직 방법 못찾아서 count돌다가 30개 이상이면 멈추게
@@ -140,51 +137,20 @@ def yolo_on_video(video_path):
         #                                                            #
         ##############################################################
 
+        # 임시방편용
+        if frame_number == 30:
+            break
+
+        frame_number += 1
 
 
-def crop_person(img,box_coord,frame_number):
-    person_number=1
-
-    try:
-        for bbox in box_coord:
-            x, y, w, h = bbox[0], bbox[1], bbox[2], bbox[3]
-            roi = img[y:y + h, x:x + w]
-            cv2.imwrite("persons/" + "frame_" + f"{frame_number}" + "_" + "person_" + f"{person_number}" + ".jpg", roi)
-            # cv2.imwrite("persons/" +"frame_"+f"{person_number}" + "_" + f"{frame_number}.jpg", roi)
-            person_number += 1
-
-    except Exception as e:
-        print(e)
-        print("in the frame"+f"{frame_number}"+"this person has error"+f"{person_number}")
-        pass
+def crop_person():
+    pass
 
 
-
-
-
-if __name__=="__main__":
-
-    #10/12 19:11 작동완료 확인
-    #10/12 crop function 까지 만들어서 함수화
-    #10/12 완성
+if __name__ == "__main__":
+    # 10/12 19:11 작동완료 확인
     yolo_on_video("1554.mp4")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     # cap = cv2.VideoCapture('1554.mp4')
     # frame_number = 0
