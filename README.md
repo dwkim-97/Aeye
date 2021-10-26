@@ -2,6 +2,24 @@
 CCTV 인물 자동 탐지 어플리케이션
 
 
+
+
+
+## Getting started
+
+#### Conda (Recommended)
+
+```bash
+# Tensorflow CPU
+conda env create -f conda-cpu.yml
+conda activate tracker-cpu
+
+# Tensorflow GPU
+conda env create -f conda-gpu.yml
+conda activate tracker-gpu
+```
+
+
 ##Getting Started
 
 1. yolo_on_video.py
