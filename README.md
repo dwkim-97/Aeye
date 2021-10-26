@@ -18,4 +18,7 @@ python yolo_on_video.py --video=1554.mp4 --frame_rate=30
 - --frame_rate=number of frame users want to cut 
 
 
+#### yolo_on_video Result
+<img src='yolo_on_video_example.jpg' />
+
 
