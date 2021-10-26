@@ -21,4 +21,10 @@ python yolo_on_video.py --video=1554.mp4 --frame_rate=30
 #### yolo_on_video Result
 <img src='yolo_on_video_example.jpg' />
 
+2. image_clustering.py
+ - 동영사 내 등장인물에 대하여 Clustering으 진행
+ - Clustering 결과르 json 파일로 저장
 
+```bash
+python image_clustering.py
+```
