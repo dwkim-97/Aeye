@@ -28,3 +28,16 @@ python yolo_on_video.py --video=1554.mp4 --frame_rate=30
 ```bash
 python image_clustering.py
 ```
+
+
+
+3. Target_matching.py
+ - 입력 타겟에 가장 유사한 클러스터 인물 비교
+ - Pops up and returns the closest persons by comparing cosine similarity
+ - required parameter: target_image: person you want to find in this video
+
+```bash
+python3 Target_matching.py --target_image=current_path/target_image.jpg
+```
+
+
