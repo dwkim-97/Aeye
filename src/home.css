@@ -60,7 +60,13 @@ ul, ol{
 
 /*------------------page1---------------*/
 
+.inputForm{
+    display:flex;
+    flex-direction: row;
+}
+
 .fileInputForm{
+    position: relative;
     display:flex;
     flex-direction: column;
     background-color:#f5f6fa;
@@ -68,17 +74,38 @@ ul, ol{
     justify-content:center;
     align-items:center;
     padding: 30px 0;
-    margin:auto;
+    margin:10px;
 }
 
-.fileInputForm #inputVideoBtn{
-    height: 50px;
+.fileInputForm .inputBtns{
+    position:relative;
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    text-align:center;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .fileInputForm video{
-    height:0px;
-    width:80%;
-    margin: auto;
+    height:90%;
+    width:90%;
+    max-height:450px;
+}
+
+.fileInputForm .videoBlock{
+    text-align:center;
+}
+
+.fileInputForm .image{
+    max-height:350px;
+}
+
+.uploadTitle{
+    background-color: #dcdde1;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 /*------------------page2---------------*/
