@@ -36,14 +36,12 @@ function videoInputHandler() {
     video = document.createElement("video");
     video.setAttribute("data-is-play", "paused");
     video.className = "video";
-    console.log(video);
     video.setAttribute("src", videoUrl);
     video.addEventListener("click", videoClickHandler);
     videoBlock.appendChild(video);
 }
 
 function videoClickHandler() {
-    console.log(video.dataset.isPlay);
     if (video.dataset.isPlay === "playing") {
         video.pause();
         video.dataset.isPlay = "paused";
@@ -55,7 +53,6 @@ function videoClickHandler() {
 
 function imageInputHandler() {
     const selectedImage = inputImageBtn.files[0];
-    console.log(selectedImage);
     const imageUrl = URL.createObjectURL(selectedImage);
     image = document.createElement("img");
     image.className = "image";
