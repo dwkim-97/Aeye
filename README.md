@@ -41,3 +41,16 @@ python3 Target_matching.py --target_image=current_path/target_image.jpg
 ```
 
 
+
+4. mobilenet.py
+ - 찾고자 하는 타겟 이미지를 동영상 내에서 frame 별로 SSD MOBILENET을 이용하여 인물들을 detect 후 모든 인물과 1대 N 비교 
+ - yolo를 사용시 cpu의 느린 단점을 해결하고자 cpu를 사용해서 보완할 수 있는 Single shot detection과 mobilenet v3 detection을 사용
+ - required parameter: target_image: person you want to find in this video , target_video: input video , frame_rate: second user wants to cut the video file per frame
+ 
+
+```bash
+python3 mobilenet_final.py --target_video=/Users/suminbae/PycharmProjects/tf_cv2/aeye/people-detection.mp4  --target_img=/Users/suminbae/PycharmProjects/tf_cv2/aeye/test5.jpg --frame_rate=0.5
+```
+
+
+
