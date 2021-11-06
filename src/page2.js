@@ -4,6 +4,7 @@ const goBackBtn = document.getElementById("goBackBtn"),
     goNextBtn = document.getElementById('goNextBtn'),
     videoBlock = document.getElementById('videoBlock'),
     video = document.querySelector('#videoPlayer'),
+    closestImageBlock = document.querySelector('#closestImageBlock'),
     galleryBlock = document.getElementById('galleryBlock'),
     peopleGallery = document.getElementById('peopleGallery');
 
@@ -25,7 +26,6 @@ function playVideoWithTime(event) {
     video.currentTime = time;
     video.play();
     video.dataset.isPlay = "playing";
-    console.log(video);
 }
 
 // 비디오 페이지 넘어오게 하기 - 서버 연동시 변경
@@ -43,8 +43,6 @@ function getOriginalVideo() {
         muted: true,
         preload: "metadata",
     });
-    console.log(player);
-
 }
 
 
@@ -67,8 +65,9 @@ function getOriginalVideo() {
 // }
 
 // 인물 갤러리 생성 - 서버 연동시 변경
+// i값을 represent_person안에 있는 파일수 즉 클러스터만큼 하면 됨
 function getGallery() {
-    for (let i = 0; i < 11; i++) {
+    for (let i = 0; i < 5; i++) {
         const TEMP_LIST_ITEM = document.createElement('li');
         const TEMP_LIST_ITEM_CONTAINOR = document.createElement("div");
         const TEMP_PERSON_OBJECT = document.createElement('img');
@@ -86,7 +85,7 @@ function getGallery() {
 
         TEMP_LIST_ITEM.appendChild(TEMP_TIME_BLOCK);
 
-        TEMP_PERSON_OBJECT.setAttribute('src', `../test_data/${i}.png`);
+        TEMP_PERSON_OBJECT.setAttribute('src', `../test_data/represent_persons/group_${i}.jpg`);
         TEMP_PERSON_OBJECT.setAttribute("class", "person_img");
 
 
@@ -127,7 +126,6 @@ function changeSecondsToTime(seconds) {
 }
 
 function videoClickHandler() {
-    console.log(video.dataset.isPlay);
     if (video.dataset.isPlay === "playing") {
         video.pause();
         video.dataset.isPlay = "paused";
@@ -137,12 +135,18 @@ function videoClickHandler() {
     }
 }
 
+function setClosestImage() {
+    const closestImageElement = peopleGallery.children[5].cloneNode(true);
+    closestImageBlock.appendChild(closestImageElement);
+}
+
 function init() {
     getOriginalVideo();
     getGallery();
     goBackBtn.addEventListener('click', goBackHandler);
     goNextBtn.addEventListener('click', goNextHandler);
     video.addEventListener('click', videoClickHandler);
+    setClosestImage();
 }
 
 init();

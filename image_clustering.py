@@ -7,7 +7,6 @@ from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 from keras.preprocessing.image import load_img
 from keras.applications.vgg16 import VGG16, preprocess_input
-from keras.preprocessing import image
 import matplotlib.image as mpimg
 import pickle
 from tqdm import tqdm
@@ -16,19 +15,33 @@ from pprint import pprint
 from sklearn.decomposition import PCA
 from absl import app
 from absl import flags
+from sklearn.metrics.pairwise import cosine_similarity
+from numpy import dot
+from numpy.linalg import norm
+from scipy import spatial
+
+
+
+
+
 FLAGS = flags.FLAGS
 
 #Set path as your own directory
 path = "/Users/suminbae/PycharmProjects/tf_cv2/aeye"
-p_path = "/Users/suminbae/PycharmProjects/tf_cv2/aeye/persons"
-d_path = "/Users/suminbae/PycharmProjects/tf_cv2/aeye/debug_persons"
+#p_path = "/Users/suminbae/PycharmProjects/tf_cv2/aeye/persons"
+p_path="/Users/suminbae/PycharmProjects/tf_cv2/aeye/test_data/persons"
+save_path="/Users/suminbae/PycharmProjects/tf_cv2/aeye/test_data/represent_persons"
+
+#d_path = "/Users/suminbae/PycharmProjects/tf_cv2/aeye/debug_persons"
 
 # change the working directory to the path where the images are located
-os.chdir(d_path)
+#path 설정을 잘해야 에러 안남
+os.chdir(p_path)
 
 
 # this list holds all the image filename
 persons = []
+
 
 
 # 저장해준다 filename들
@@ -138,7 +151,7 @@ def main(argv):
     del argv
     # 1.success
     # for real process change d_path -> p_path
-    save_file_name(d_path)
+    save_file_name(p_path)
     # 2. call model(success)
     model = get_model()
     # 3. persons feature
@@ -147,21 +160,25 @@ def main(argv):
     # 4. reshaping image (1,4096) ->(4096,)
     img_feature_vector, images = reshape_feature_vector(img_feature_vector)
 
-    # plot kvalue sucess
+    # plot kvalue sucess doens't work on shell process
     #plot_k_value(img_feature_vector, images)
 
     # set k based on plotting data
-    k = 5
+    k = 2
 
     groups = cluster_data(persons, k, images)
-    save_clustering_result(groups, path, "10_26_final_result.json")
+    save_clustering_result(groups, path, "10_28_clustering_result.json")
 
-    #yolo_on_video(FLAGS.video,FLAGS.frame_rate)
-
+    # js용 대표이미지 저장하기
+    for key,val in groups.items():
+        main_img = cv2.imread(p_path+"/"+groups[key][0],1)
+        os.chdir(save_path)
+        cv2.imwrite(f"group_{key}.jpg",main_img)
 
 
 
 if __name__=="__main__":
+    #10/26 17:38 여기까지 진행
     app.run(main)
 
 

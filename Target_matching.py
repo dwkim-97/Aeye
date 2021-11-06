@@ -37,8 +37,10 @@ flags.mark_flag_as_required("target_image")
 
 #Set path as your own directory
 path = "/Users/suminbae/PycharmProjects/tf_cv2/aeye"
-p_path = "/Users/suminbae/PycharmProjects/tf_cv2/aeye/persons"
+#p_path = "/Users/suminbae/PycharmProjects/tf_cv2/aeye/persons"
+p_path="/Users/suminbae/PycharmProjects/tf_cv2/aeye/test_data/persons"
 d_path = "/Users/suminbae/PycharmProjects/tf_cv2/aeye/debug_persons"
+save_path="/Users/suminbae/PycharmProjects/tf_cv2/aeye/test_data/matching_result"
 
 # change the working directory to the path where the images are located
 #path 설정을 잘해야 에러 안남
@@ -189,8 +191,11 @@ def recommend_matching_result(cluster_compare_result,groups):
     matching_person = p_path + "/" + groups[max_result][0]
     #matching_person = mpimg.imread(matching_person)
     matching_person = cv2.imread(matching_person)
-    cv2.imshow("Is this the person looking for?",matching_person )
-    cv2.waitKey(0)
+    cv2.imshow("Is this the person looking for?",matching_person)
+    os.chdir(save_path)
+    cv2.imwrite("matching_person.jpg",matching_person)
+
+
 
 
 

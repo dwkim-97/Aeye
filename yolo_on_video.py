@@ -159,13 +159,14 @@ def yolo_on_video(video_path,max_frame_cut):
 
 def crop_person(img,box_coord,frame_number):
     person_number=1
-
+    path="/Users/suminbae/PycharmProjects/tf_cv2/aeye/test_data/"
     try:
         for bbox in box_coord:
             x, y, w, h = bbox[0], bbox[1], bbox[2], bbox[3]
             roi = img[y:y + h, x:x + w]
             #persons:는 폴더명 여기 폴더명은 임의로 지정 가능 나중에 따로 parameter로 빼놓기
-            cv2.imwrite("persons/" + "frame_" + f"{frame_number}" + "_" + "person_" + f"{person_number}" + ".jpg", roi)
+            #11/6 js용 디버그
+            cv2.imwrite(path+"persons/" + "frame_" + f"{frame_number}" + "_" + "person_" + f"{person_number}" + ".jpg", roi)
             # cv2.imwrite("persons/" +"frame_"+f"{person_number}" + "_" + f"{frame_number}.jpg", roi)
             person_number += 1
 
@@ -185,6 +186,7 @@ def main(argv):
 
 if __name__=="__main__":
     #10:26 14:43 app.run 방법 실행 성공
+    #crop person function path만 따로 parameter로 빼놓는 작업 진행
     app.run(main)
 
 
