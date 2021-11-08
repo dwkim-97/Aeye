@@ -1,5 +1,4 @@
 const gallery2_URL = "./gallery2.html?";
-const test_data_URL = "../test_data";
 
 const goBackBtn = document.getElementById("goBackBtn"),
     goNextBtn = document.getElementById('goNextBtn'),
@@ -46,17 +45,69 @@ function getOriginalVideo() {
     });
 }
 
+
+// // 사람 이미지 선택해서 체크
+// function personObjectCheckHandler(event) {
+//     const clickedLi = event.target;
+//     console.log(clickedLi);
+//     clickedLi.setAttribute('checked', "true");
+//     clickedLi.style.border = "solid";
+//     clickedLi.style.borderColor = "red";
+//     // 이전에 있던 체크드 지우기
+//     if (window.localStorage.getItem("checkId")) {
+//         const oldCheckId = window.localStorage.getItem("checkId");
+//         const oldCheckedLi = document.getElementById(oldCheckId);
+//         oldCheckedLi.setAttribute('checked', "false");
+//         oldCheckedLi.style.border = "none";
+//     }
+//     window.localStorage.setItem("checkId", clickedLi.id);
+//     window.localStorage.setItem("checkSrc", event.target.id);
+// }
+
 // 인물 갤러리 생성 - 서버 연동시 변경
-function createGallery() {
-    let index = 0;
-    while (index < 5) {
-        const src = test_data_URL + '/represent_persons/group_' + index + '.jpg';
-        const li = document.createElement('li');
-        li.id = index;
-        const personBlock = createPersonBlock(src);
-        li.appendChild(personBlock);
-        peopleGallery.appendChild(li);
-        index++;
+function getGallery() {
+    for (let i = 0; i < 11; i++) {
+        const TEMP_LIST_ITEM = document.createElement('li');
+        const TEMP_LIST_ITEM_CONTAINOR = document.createElement("div");
+        const TEMP_PERSON_OBJECT = document.createElement('img');
+        const TEMP_TIME_BLOCK = document.createElement('div');
+
+        peopleGallery.appendChild(TEMP_LIST_ITEM);
+        TEMP_LIST_ITEM.appendChild(TEMP_LIST_ITEM_CONTAINOR);
+        TEMP_LIST_ITEM.setAttribute('id', i);
+        TEMP_LIST_ITEM.setAttribute("class", "list_item");
+        //TEMP_LIST_ITEM.addEventListener('click', personObjectCheckHandler);
+
+        TEMP_LIST_ITEM_CONTAINOR.appendChild(TEMP_PERSON_OBJECT);
+        TEMP_LIST_ITEM_CONTAINOR.setAttribute("class", "person");
+        TEMP_LIST_ITEM_CONTAINOR.setAttribute('checked', "false");
+
+        TEMP_LIST_ITEM.appendChild(TEMP_TIME_BLOCK);
+
+        TEMP_PERSON_OBJECT.setAttribute('src', `../test_data/${i}.png`);
+        TEMP_PERSON_OBJECT.setAttribute("class", "person_img");
+
+
+        TEMP_TIME_BLOCK.setAttribute("class", "time_box");
+
+        if (i === 0) {
+            [0, 63, 74, 269, 313].forEach((aTime) => {
+                const TEMP_TIME = document.createElement('p');
+                TEMP_TIME.innerText = changeSecondsToTime(aTime);
+                TEMP_TIME.dataset.time = aTime;
+                TEMP_TIME.addEventListener('click', playVideoWithTime)
+                TEMP_TIME_BLOCK.appendChild(TEMP_TIME);
+            })
+        } else {
+            for (let j = 0; j < 5; j++) {
+                const TEMP_TIME = document.createElement('p');
+                const RANDOM_TIME = Math.floor(Math.random() * 403);
+                TEMP_TIME.innerText = changeSecondsToTime(RANDOM_TIME);
+                TEMP_TIME.dataset.time = RANDOM_TIME;
+                TEMP_TIME.addEventListener('click', playVideoWithTime)
+                TEMP_TIME_BLOCK.appendChild(TEMP_TIME);
+            }
+        }
     }
 }
 
@@ -83,34 +134,14 @@ function videoClickHandler() {
     }
 }
 
-function createPersonBlock(src, isBold = false) {
-    const fileName = src.split('/').pop();
-
-    const imageBlockElement = document.createElement('div');
-    imageBlockElement.className = "image_block";
-
-    const imageElement = document.createElement("img");
-    imageElement.setAttribute('src', src);
-    imageElement.setAttribute("class", "person_img");
-
-    const imageName = document.createElement(isBold ? 'strong' : 'p');
-    imageName.className = "image_name";
-    imageName.innerText = fileName;
-
-    imageBlockElement.append(imageElement, imageName);
-
-    return imageBlockElement;
-}
-
 function setClosestImage() {
-    const closestImageElement = createPersonBlock(test_data_URL + '/matching_result/matching_person.jpg', true);
-    closestImageElement.id = "closest_image";
+    const closestImageElement = peopleGallery.children[5].cloneNode(true);
     closestImageBlock.appendChild(closestImageElement);
 }
 
 function init() {
     getOriginalVideo();
-    createGallery();
+    getGallery();
     goBackBtn.addEventListener('click', goBackHandler);
     goNextBtn.addEventListener('click', goNextHandler);
     video.addEventListener('click', videoClickHandler);
