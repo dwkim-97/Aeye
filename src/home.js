@@ -1,4 +1,4 @@
-const page1_URL = "./page1.html?";
+const gallery1_URL = "./gallery1.html?";
 
 function checkUid(uid) {
     const UID_FROM_SERVER = '0000';
@@ -14,7 +14,7 @@ function onSubmit(event) {
     event.preventDefault();
     const uid = document.getElementById('uid');
     if (checkUid(uid.value)) {
-        location.href = page1_URL;
+        location.href = gallery1_URL;
     } else {
         uid.value = "";
     }
