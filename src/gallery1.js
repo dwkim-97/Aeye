@@ -1,4 +1,4 @@
-const page3_URL = "./page3.html?";
+const gallery2_URL = "./gallery2.html?";
 
 const goBackBtn = document.getElementById("goBackBtn"),
     goNextBtn = document.getElementById('goNextBtn'),
@@ -17,7 +17,7 @@ function goBackHandler() {
 
 // 다음으로
 function goNextHandler() {
-    location.href = page3_URL;
+    location.href = gallery2_URL;
 }
 
 // 특정 시간으로 비디오 재생하기

@@ -1,5 +1,3 @@
-const page4_URL = "./page4.html";
-
 const inputVideoBtn = document.getElementById('inputVideoBtn'),
     video = document.querySelector('.video'),
     submitVideoBtn = document.getElementById('submitVideoBtn'),
