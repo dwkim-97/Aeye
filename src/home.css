@@ -1,0 +1,221 @@
+html, body{
+    position: relative;
+    background-color:#dcdde1;
+    height: 90%;
+}
+
+.wrapper{
+    margin-top:100px;
+    flex-direction:column;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#title{
+    font-size: 3rem;
+    margin:0 0 20px 0;
+    padding:0;
+}
+
+footer{
+    margin-top: 20px;
+    text-align:center;
+}
+
+#goBackBtn{
+    position: fixed;
+    top:20px;
+    left: 20px;
+}
+
+#goNextBtn{
+    position: fixed;
+    top:20px;
+    right: 20px;
+}
+
+ul, ol{
+    list-style:none;
+}
+
+/*------------------home---------------*/
+
+#logInBlock{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    margin: auto;
+}
+
+#logInForm{
+    background-color:#f5f6fa;
+    padding: 0 10px 20px;
+    border-radius: 10px;
+}
+
+#logInForm h1{
+    text-align:center;
+}
+
+/*------------------gallery1---------------*/
+
+#videoWithGallery{
+    position:relative;
+    width: 100%;
+    max-height: 600px;
+    display: flex;
+    background-color: #f5f6fa;
+    margin: auto;
+    border-radius: 10px;
+}
+
+#videoWithGallery #videoBlock{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#videoWithGallery video{
+    width: 100%;
+}
+
+#videoWithGallery #galleryBlock{
+    display: flex;
+    width: 50%;
+    text-align: center;
+    border-left: 5px dashed black;
+}
+
+#galleryBlock #peopleGallery{
+    width: 100%;
+    height: 95%;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: auto;
+}
+
+.videoPlayer-dimensions {
+    width: 1000px;
+    height: 100%;
+}
+
+.list_item{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    height: 270px;
+    width: 100px;
+    margin:20px;
+}
+
+.image_block{
+    margin: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+}
+
+.person_img{
+    height: 250px;
+    width: 100px;
+    padding: 5px;
+    object-fit: fill;
+}
+
+.time_box {
+    margin-top:10px;
+    height: 50px;
+    width: 100%;
+    background-color: #ececf0;
+    overflow:auto;
+    border-radius: 5%;
+    border: #cececf 2px solid;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time_box p{
+    margin:0 auto;
+}
+
+#closestImageBlock{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 200px;
+    background-color: #ececf0;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+}
+
+#closest_image {
+    width: 180px;
+}
+
+/*------------------gallery2---------------*/
+
+#targetWithFrameGallery{
+    position:relative;
+    width: 100%;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    background-color: #f5f6fa;
+    border-radius: 10px;
+}
+
+#targetBlock{
+    position:relative;
+    height: 100%;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: 3px dashed;
+}
+
+#targetBlock h2{
+    text-align: center;
+    line-height: 2;
+    width: 100%;
+    padding: 10px 0px;
+    margin: 0px;
+    border-bottom: 5px double;
+}
+
+.target_img{
+    height: 400px;
+    margin: 10px;
+    max-width: 100%;
+}
+
+#frameGalleryBlock{
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+#frameGallery{
+    display: flex;
+    height: 80%;
+    flex-wrap: wrap;
+}
+
+.frame_block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 3px;
+    height: 300px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.frame_block img{
+    height: 80%;
+}
